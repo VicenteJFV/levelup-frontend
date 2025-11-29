@@ -1,0 +1,477 @@
+/* Sidebar admin: títulos de sección y separación */
+.sidebar-section-title {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #888 !important;
+  margin-left: 2px;
+}
+.admin-sidebar hr {
+  border-top: 1.5px solid #333;
+  margin-left: -12px;
+  margin-right: -12px;
+}
+/* Botón principal destacado en verde neón */
+.btn-accent.main-cta {
+  background: var(--accent-2) !important;
+  color: #181818 !important;
+  border: none;
+  box-shadow: 0 0 12px #39ff1466;
+  font-size: 1.15em;
+}
+.btn-accent.main-cta:hover {
+  background: var(--accent-1) !important;
+  color: #181818 !important;
+  box-shadow: 0 0 18px #1e90ff99;
+}
+
+/* Hover de todos los botones acento: verde neón */
+.btn-accent:hover,
+.btn-outline-accent:hover {
+  background: var(--accent-2) !important;
+  color: #181818 !important;
+  border-color: var(--accent-2) !important;
+}
+
+/* Subrayado verde animado en títulos destacados */
+.section-title,
+.hero-title {
+  position: relative;
+  display: inline-block;
+}
+.section-title::after,
+.hero-title::after {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-2), transparent);
+  border-radius: 2px;
+  margin: 0.3em auto 0 auto;
+  transition: width 0.3s;
+}
+.section-title:hover::after,
+.hero-title:hover::after {
+  width: 90%;
+}
+/* Badges y etiquetas de estado con verde neón */
+.badge-success,
+.badge-available,
+.badge-green {
+  background: var(--accent-2) !important;
+  color: #181818 !important;
+  font-family: "Orbitron", sans-serif;
+  border-radius: 0.5em;
+  font-size: 0.95em;
+  padding: 0.35em 0.7em;
+}
+
+/* Links activos o destacados con verde neón */
+.nav-link.active,
+.nav-link.selected {
+  color: var(--accent-2) !important;
+  font-weight: bold;
+}
+
+/* Iconos de check o detalles de éxito */
+.icon-success,
+.icon-check {
+  color: var(--accent-2) !important;
+}
+
+/* Bordes inferiores o detalles de cards destacados */
+.card.border-accent {
+  border-bottom: 3px solid var(--accent-2) !important;
+}
+
+/* Separadores o líneas de progreso con verde neón */
+.progress-bar-success,
+.progress-bar-green {
+  background: var(--accent-2) !important;
+}
+/* ===== Fuentes ===== */
+
+:root {
+  --bg: #000000;
+  --text: #ffffff;
+  --text-2: #d3d3d3;
+  --accent-1: #1e90ff; /* Azul Eléctrico */
+  --accent-2: #39ff14; /* Verde Neón */
+  --card: #181818;
+  --border: #23272b;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: "Roboto", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+}
+
+/* Tipografías */
+/* Encabezados Orbitron y color de acento azul eléctrico */
+.brand-title,
+.section-title,
+.hero-title,
+h1,
+h2,
+h3 {
+  font-family: "Orbitron", sans-serif !important;
+  color: var(--accent-1);
+}
+.hero-title span {
+  color: var(--accent-1);
+}
+/* Texto secundario gris claro */
+.text-secondary {
+  color: var(--text-2) !important;
+}
+
+/* Navbar */
+.lug-header {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar .nav-link {
+  color: var(--text);
+  font-family: "Orbitron", sans-serif;
+}
+.navbar .nav-link:hover {
+  color: var(--accent-2);
+}
+
+/* Botones */
+
+.btn-accent,
+.btn-outline-accent,
+.btn-success {
+  font-family: "Orbitron", sans-serif;
+}
+.btn-accent {
+  background: var(--accent-1);
+  color: #181818;
+  border: none;
+}
+.btn-accent:hover {
+  background: var(--accent-2);
+  color: #181818;
+}
+.btn-outline-accent {
+  border: 1.5px solid var(--accent-1);
+  color: var(--accent-1);
+  background: transparent;
+}
+.btn-outline-accent:hover {
+  background: var(--accent-1);
+  color: #181818;
+}
+
+.btn-success {
+  background: var(--accent-2) !important;
+  color: #181818 !important;
+  border: none;
+}
+.btn-success:hover {
+  background: #1e90ff !important;
+  color: #181818 !important;
+}
+
+/* Alertas de éxito con verde neón */
+.alert-success {
+  background: var(--accent-2) !important;
+  color: #181818 !important;
+  border: 1.5px solid #39ff14 !important;
+}
+
+/* Cards base */
+.card {
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+}
+.card-category h3 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+.card-category,
+.card-category a {
+  text-decoration: none !important;
+}
+.card-category:hover,
+.card-category a:hover {
+  text-decoration: underline;
+}
+.card-blog .card-img-top,
+.row.g-3 .card-img-top {
+  width: 100%;
+  object-fit: cover;
+  background: #222;
+}
+.card-blog .card-img-top {
+  height: 320px;
+  object-position: top;
+}
+.row.g-3 .card-img-top {
+  height: 220px;
+  object-position: center;
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+.card a,
+.card-blog {
+  text-decoration: none !important;
+}
+.card a:hover,
+.card-blog:hover {
+  text-decoration: underline;
+}
+
+/* Imagen principal en el detalle de producto */
+.row.g-4.align-items-start #det-img {
+  width: 100%;
+  max-width: 420px;
+  height: 320px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background: #222;
+}
+
+/* Hero */
+.hero-title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+/* Precios */
+.price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent-1);
+}
+
+/* Footer */
+.lug-footer {
+  border-top: 1px solid var(--border);
+}
+
+/* Formulario base */
+
+.lug-form .form-control,
+.lug-form .form-select,
+.form-control,
+.input-group-text {
+  background: #181818 !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+}
+.lug-form .form-control:focus,
+.lug-form .form-select:focus {
+  border-color: var(--accent-1);
+  box-shadow: 0 0 0 0.2rem rgba(30, 144, 255, 0.15);
+}
+.lug-form .invalid-feedback {
+  display: block;
+  color: #ff6b6b;
+}
+
+/* Carrito flotante */
+.cart-floating,
+#cartFloating {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 470px;
+  max-width: 95vw;
+  z-index: 1050;
+  background: #181818;
+  color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0 24px #0008;
+  padding: 1rem 1.25rem;
+  transition: opacity 0.4s;
+  opacity: 0;
+  pointer-events: none;
+}
+.cart-floating.visible,
+#cartFloating.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.cart-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.cart-body {
+  max-height: 40vh;
+  overflow: auto;
+}
+
+/* Animación fade-in para el contenido principal */
+.fade-in {
+  opacity: 0;
+  animation: fadeInAnim 0.4s ease-in forwards;
+}
+@keyframes fadeInAnim {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Main container */
+main.container {
+  max-width: 1200px;
+}
+
+/* Tabla de carrito */
+.card .table,
+.card .table thead,
+.card .table tbody,
+.card .table tr,
+.card .table th,
+.card .table td {
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border: none !important;
+}
+.card .table {
+  border-radius: 1rem;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.card .table thead tr {
+  background: var(--border) !important;
+  color: var(--accent-2) !important;
+}
+.card .table tbody tr {
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+.card .table th,
+.card .table td {
+  vertical-align: middle;
+  padding: 1rem 0.75rem;
+}
+.card .table tbody tr:hover {
+  background: #23272b !important;
+}
+
+/* Ajusta el ancho mínimo de la columna de cantidad en la tabla del carrito */
+.card .table th:nth-child(2),
+.card .table td:nth-child(2) {
+  min-width: 120px;
+  width: 1%;
+  text-align: center;
+}
+
+/* List group en resumen */
+.list-group-item {
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+/* Resumen de compra */
+.resumen-compra-card .section-title {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+@media (min-width: 992px) {
+  .resumen-compra-card {
+    max-width: 340px;
+    min-width: 260px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.resumen-compra-card #discountCode {
+  max-width: 200px;
+  min-width: 120px;
+  width: 100%;
+  display: inline-block;
+}
+.resumen-compra-card #applyDiscount {
+  min-width: 90px;
+  margin-left: 0.5rem;
+}
+.resumen-compra-card .card-body {
+  padding: 1.5rem 1.2rem;
+}
+
+/* Carrusel: cards alineadas en fila */
+#relacionados-carousel-inner .carousel-item {
+  display: none;
+}
+
+#relacionados-carousel-inner .carousel-item.active {
+  display: flex !important;
+  justify-content: center;
+  align-items: stretch;
+  gap: 16px;
+}
+
+/* Cards de productos relacionados: tamaño fijo */
+#relacionados-carousel-inner .card {
+  width: 290px;
+  min-width: 290px;
+  max-width: 290px;
+  flex: 0 0 auto;
+  height: 420px; /* <-- Cambia aquí el alto */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Imágenes de las cards: tamaño y proporción uniforme */
+#relacionados-carousel-inner .card-img-top {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.75rem 0.75rem 0 0;
+  background: #222;
+}
+
+/* Flechas del carrusel más afuera */
+#relacionados-carrusel .carousel-control-prev,
+#relacionados-carrusel .carousel-control-next {
+  width: 48px;
+  height: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(24, 24, 24, 0.7);
+  border-radius: 50%;
+  z-index: 2;
+  /* Posición más afuera */
+  position: absolute;
+}
+
+#relacionados-carrusel .carousel-control-prev {
+  left: -56px; /* Más afuera a la izquierda */
+}
+#relacionados-carrusel .carousel-control-next {
+  right: -56px; /* Más afuera a la derecha */
+}
+
+/* Nombre del producto en card de relacionados: máximo 2 líneas con ellipsis */
+#relacionados-carousel-inner .card-body h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limita a 2 líneas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  min-height: 2.4em; /* Espacio para 2 líneas */
+  max-height: 2.4em;
+}
