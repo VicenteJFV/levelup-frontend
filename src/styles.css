@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
 /* Sidebar admin: títulos de sección y separación */
 .sidebar-section-title {
   letter-spacing: 0.08em;
@@ -107,9 +109,9 @@ body {
   height: 100%;
 }
 body {
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: "Roboto", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  background-color: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: "Roboto", system-ui, -apple-system, Segoe UI, Arial, sans-serif !important;
 }
 
 /* Tipografías */
@@ -474,4 +476,170 @@ main.container {
   white-space: normal;
   min-height: 2.4em; /* Espacio para 2 líneas */
   max-height: 2.4em;
+}
+
+
+/* ===== SOBRESCRIBIR BOOTSTRAP CON TUS COLORES ===== */
+
+/* Botón primary -> Azul eléctrico */
+.btn-primary {
+  background-color: var(--accent-1) !important;
+  border-color: var(--accent-1) !important;
+  color: #181818 !important;
+  font-family: "Orbitron", sans-serif;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--accent-2) !important;
+  border-color: var(--accent-2) !important;
+  color: #181818 !important;
+  box-shadow: 0 0 12px #39ff1466 !important;
+}
+
+/* Botón outline-primary */
+.btn-outline-primary {
+  color: var(--accent-1) !important;
+  border-color: var(--accent-1) !important;
+  background: transparent !important;
+  font-family: "Orbitron", sans-serif;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--accent-1) !important;
+  color: #181818 !important;
+}
+
+/* Links y navegación */
+a {
+  color: var(--accent-1);
+}
+
+a:hover {
+  color: var(--accent-2);
+}
+
+/* Badge primary */
+.badge.bg-primary {
+  background-color: var(--accent-1) !important;
+}
+
+/* Navbar */
+.navbar-dark .navbar-nav .nav-link {
+  color: var(--text) !important;
+  font-family: "Orbitron", sans-serif;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: var(--accent-2) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link.active {
+  color: var(--accent-2) !important;
+}
+
+/* Cards con borde verde al hover */
+.card:hover {
+  border-color: var(--accent-2) !important;
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+  transition: all 0.3s ease;
+}
+
+/* Inputs focus con borde azul */
+.form-control:focus {
+  border-color: var(--accent-1) !important;
+  box-shadow: 0 0 0 0.2rem rgba(30, 144, 255, 0.25) !important;
+}
+
+/* ===== BOTONES OUTLINE-LIGHT -> Estilo Gamer ===== */
+.btn-outline-light {
+  color: var(--accent-1) !important;
+  border-color: var(--accent-1) !important;
+  background: transparent !important;
+  font-family: "Orbitron", sans-serif;
+}
+
+.btn-outline-light:hover {
+  background-color: var(--accent-2) !important;
+  border-color: var(--accent-2) !important;
+  color: #181818 !important;
+  box-shadow: 0 0 12px #39ff1466 !important;
+}
+
+/* ===== TEXTO MUTED -> Gris más claro ===== */
+.text-muted {
+  color: var(--text-2) !important;
+}
+
+/* ===== PÁRRAFO LEAD (Hero) ===== */
+.lead {
+  color: var(--text-2) !important;
+  font-family: "Roboto", sans-serif !important;
+}
+
+/* ===== CATEGORY CARDS ===== */
+.category-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border) !important;
+}
+
+.category-card:hover {
+  border-color: var(--accent-2) !important;
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.3) !important;
+  transform: translateY(-3px);
+}
+
+.category-card .card-title {
+  color: var(--accent-1) !important;
+  font-family: "Orbitron", sans-serif !important;
+}
+
+.category-card .card-text {
+  color: var(--text-2) !important;
+}
+
+/* ===== HERO SECTION ===== */
+.display-5 {
+  font-family: "Orbitron", sans-serif !important;
+  color: var(--accent-1) !important;
+}
+
+/* ===== TÍTULOS H4 ===== */
+.h4, h4 {
+  font-family: "Orbitron", sans-serif !important;
+  color: var(--accent-1) !important;
+}
+
+/* ===== BADGE CARRITO ===== */
+.badge.bg-primary {
+  background-color: var(--accent-2) !important;
+  color: #181818 !important;
+  font-family: "Orbitron", sans-serif;
+}
+
+
+/* ===== BOTONES DE CANTIDAD EN CARRITO ===== */
+.btn-outline-secondary {
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+  background: transparent !important;
+  font-weight: bold;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--accent-1) !important;
+  border-color: var(--accent-1) !important;
+  color: #181818 !important;
+}
+
+.btn-outline-secondary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }

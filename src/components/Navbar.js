@@ -44,14 +44,14 @@ const Navbar = () => {
 
         <ul className="navbar-nav ms-auto align-items-center">
           <li className="nav-item me-3">
-            <span className="badge bg-primary">
-              Carrito: {totalItems} ítems
-            </span>
+            <Link to="/carrito" className="badge bg-primary text-decoration-none">
+              🛒 Carrito: {totalItems} ítems
+            </Link>
           </li>
 
           {user ? (
             <>
-              {user.role === "ADMIN" && (
+              {(user.role === "ADMIN" || user.role === "ROLE_ADMIN") && (
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/admin">
                     Admin

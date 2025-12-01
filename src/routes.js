@@ -11,6 +11,7 @@ import Registro from "./pages/Registro";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminProductos from "./pages/AdminProductos";
 import AdminPedidos from "./pages/AdminPedidos";
+import Carrito from "./pages/Carrito";
 
 import { useAuth } from "./context/AuthContext";
 
@@ -39,12 +40,13 @@ const AppRoutes = () => {
           <Route path="/productos/:id" element={<ProductoDetalle />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
+          <Route path="/carrito" element={<Carrito />} />
 
           {/* Rutas de administración protegidas */}
           <Route
             path="/admin"
             element={
-              <PrivateRoute roles={["ADMIN"]}>
+              <PrivateRoute roles={["ADMIN", "ROLE_ADMIN"]}>
                 <AdminDashboard />
               </PrivateRoute>
             }
@@ -52,7 +54,7 @@ const AppRoutes = () => {
           <Route
             path="/admin/productos"
             element={
-              <PrivateRoute roles={["ADMIN"]}>
+              <PrivateRoute roles={["ADMIN", "ROLE_ADMIN"]}>
                 <AdminProductos />
               </PrivateRoute>
             }
@@ -60,7 +62,7 @@ const AppRoutes = () => {
           <Route
             path="/admin/pedidos"
             element={
-              <PrivateRoute roles={["ADMIN"]}>
+              <PrivateRoute roles={["ADMIN", "ROLE_ADMIN"]}>
                 <AdminPedidos />
               </PrivateRoute>
             }
