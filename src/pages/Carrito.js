@@ -1,10 +1,24 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
-import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { crearPedido } from "../services/orderService";
 
 const Carrito = () => {
-  const { items, removeFromCart, clearCart, totalPrice, increaseQty, decreaseQty } = useCart();
+  const {
+    items,
+    removeFromCart,
+    clearCart,
+    totalPrice,
+    increaseQty,
+    decreaseQty,
+  } = useCart();
 
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [loading, setLoading] = React.useState(false);
+
+  // Si el carrito está vacío
   if (items.length === 0) {
     return (
       <div className="text-center py-5">
@@ -17,10 +31,42 @@ const Carrito = () => {
     );
   }
 
+  const handleCheckout = async () => {
+    if (loading) return;
+    setLoading(true);
+
+    try {
+      // Armamos el objeto pedido según el backend (Order)
+      const order = {
+        customerName: user?.name || "Invitado",
+        customerEmail: user?.email || "sin-correo@levelup.cl",
+        total: totalPrice,
+        // El backend espera una lista de items con product anidado
+        items: items.map((i) => ({
+          quantity: i.qty,
+          unitPrice: i.product.price,
+          product: { id: i.product.id },
+        })),
+        // status y createdAt los completa el backend
+      };
+
+      await crearPedido(order);
+
+      // Limpiar carrito y mandar al home
+      clearCart();
+      navigate("/");
+    } catch (err) {
+      console.error(err);
+      alert("Ocurrió un error al procesar el pedido 😢");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
       <h2 className="text-light mb-4">Carrito de compras</h2>
-      
+
       <div className="row">
         {/* Lista de productos */}
         <div className="col-lg-8">
@@ -41,18 +87,28 @@ const Carrito = () => {
                       <td>
                         <div className="d-flex align-items-center">
                           <img
-                            src={item.product.imageUrl || "https://via.placeholder.com/60"}
+                            src={
+                              item.product.imageUrl ||
+                              "https://via.placeholder.com/60"
+                            }
                             alt={item.product.name}
-                            style={{ width: 60, height: 60, objectFit: "cover", borderRadius: 8 }}
+                            style={{
+                              width: 60,
+                              height: 60,
+                              objectFit: "cover",
+                              borderRadius: 8,
+                            }}
                             className="me-3"
                           />
                           <div>
                             <h6 className="mb-0">{item.product.name}</h6>
-                            <small className="text-muted">{item.product.category}</small>
+                            <small className="text-muted">
+                              {item.product.category}
+                            </small>
                           </div>
                         </div>
                       </td>
-                      {/* COLUMNA DE CANTIDAD CON BOTONES +/- */}
+                      {/* Cantidad */}
                       <td className="text-center align-middle">
                         <div className="d-flex align-items-center justify-content-center gap-2">
                           <button
@@ -74,7 +130,13 @@ const Carrito = () => {
                         </div>
                       </td>
                       <td className="text-end align-middle">
-                        ${(item.product.price * item.qty).toLocaleString("es-CL")}
+                        {(item.product.price * item.qty).toLocaleString(
+                          "es-CL",
+                          {
+                            style: "currency",
+                            currency: "CLP",
+                          }
+                        )}
                       </td>
                       <td className="text-end align-middle">
                         <button
@@ -104,7 +166,12 @@ const Carrito = () => {
               <hr />
               <div className="d-flex justify-content-between mb-2">
                 <span>Subtotal</span>
-                <span>${totalPrice.toLocaleString("es-CL")}</span>
+                <span>
+                  {totalPrice.toLocaleString("es-CL", {
+                    style: "currency",
+                    currency: "CLP",
+                  })}
+                </span>
               </div>
               <div className="d-flex justify-content-between mb-2">
                 <span>Envío</span>
@@ -114,11 +181,18 @@ const Carrito = () => {
               <div className="d-flex justify-content-between mb-4">
                 <strong>Total</strong>
                 <strong className="text-success h5">
-                  ${totalPrice.toLocaleString("es-CL")}
+                  {totalPrice.toLocaleString("es-CL", {
+                    style: "currency",
+                    currency: "CLP",
+                  })}
                 </strong>
               </div>
-              <button className="btn btn-primary w-100">
-                Proceder al pago
+              <button
+                className="btn btn-primary w-100"
+                onClick={handleCheckout}
+                disabled={loading}
+              >
+                {loading ? "Procesando..." : "Proceder al pago"}
               </button>
             </div>
           </div>
