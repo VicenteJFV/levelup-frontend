@@ -12,9 +12,8 @@ body,
 }
 
 main {
-  flex: 1;
+  flex: 1 0 auto; /* flex-grow: 1, flex-shrink: 0, flex-basis: auto */
   padding: 2rem 0;
-  min-height: calc(100vh - 200px);
 }
 
 body {
@@ -34,13 +33,14 @@ code {
 /* Contenedor con márgenes laterales */
 .container,
 .container-fluid {
-  padding-left: 1.5rem;
+  padding-left: 1 5rem;
   padding-right: 1.5rem;
 }
 
-/* Espaciado para el footer */
+/* Espaciado para el footer - CORREGIDO para sticky footer */
 footer {
-  margin-top: 3rem;
+  margin-top: auto;
+  flex-shrink: 0;
 }
 
 /* Espaciado para cards y elementos */
