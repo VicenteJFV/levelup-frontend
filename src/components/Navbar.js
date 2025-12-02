@@ -17,11 +17,13 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3">
       <Link className="navbar-brand d-flex align-items-center" to="/">
         <img
-          src="/logo192.png"
+          src="/logo412.png"
           alt="Level-Up Gamer"
           style={{ width: 40, marginRight: 8 }}
         />
-        Level-Up Gamer
+        <span style={{ fontFamily: "Orbitron, sans-serif" }}>
+          Level-Up Gamer
+        </span>
       </Link>
 
       <button
@@ -36,7 +38,11 @@ const Navbar = () => {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav me-auto">
           <li className="nav-item">
-            <NavLink className="nav-link" to="/productos">
+            <NavLink
+              className="nav-link"
+              to="/productos"
+              style={{ fontFamily: "Orbitron, sans-serif" }}
+            >
               Productos
             </NavLink>
           </li>
@@ -44,7 +50,11 @@ const Navbar = () => {
 
         <ul className="navbar-nav ms-auto align-items-center">
           <li className="nav-item me-3">
-            <Link to="/carrito" className="badge bg-primary text-decoration-none">
+            <Link
+              to="/carrito"
+              className="btn btn-success btn-sm"
+              style={{ fontFamily: "Orbitron, sans-serif" }}
+            >
               🛒 Carrito: {totalItems} ítems
             </Link>
           </li>
@@ -52,14 +62,22 @@ const Navbar = () => {
           {user ? (
             <>
               {(user.role === "ADMIN" || user.role === "ROLE_ADMIN") && (
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/admin">
-                    Admin
-                  </NavLink>
+                <li className="nav-item me-2">
+                  <Link
+                    to="/admin"
+                    className="btn btn-outline-light btn-sm"
+                    style={{ fontFamily: "Orbitron, sans-serif" }}
+                  >
+                    Usuario: {user.name || user.email}
+                  </Link>
                 </li>
               )}
               <li className="nav-item">
-                <button className="btn btn-outline-light btn-sm" onClick={handleLogout}>
+                <button
+                  className="btn btn-outline-primary btn-sm"
+                  onClick={handleLogout}
+                  style={{ fontFamily: "Orbitron, sans-serif" }}
+                >
                   Cerrar sesión
                 </button>
               </li>
@@ -67,12 +85,20 @@ const Navbar = () => {
           ) : (
             <>
               <li className="nav-item">
-                <NavLink className="btn btn-outline-light btn-sm me-2" to="/login">
+                <NavLink
+                  className="btn btn-outline-light btn-sm me-2"
+                  to="/login"
+                  style={{ fontFamily: "Orbitron, sans-serif" }}
+                >
                   Ingresar
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="btn btn-primary btn-sm" to="/registro">
+                <NavLink
+                  className="btn btn-primary btn-sm"
+                  to="/registro"
+                  style={{ fontFamily: "Orbitron, sans-serif" }}
+                >
                   Crear cuenta
                 </NavLink>
               </li>
