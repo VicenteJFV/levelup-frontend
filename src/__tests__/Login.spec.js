@@ -1,22 +1,48 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import Login from "../pages/Login";
-import { AuthProvider } from "../context/AuthContext";
-import { BrowserRouter } from "react-router-dom";
+import { render, screen } from "@testing-library/react";
 
-describe("Login page", function () {
-  it("muestra el formulario de login", function () {
-    const div = document.createElement("div");
-    const root = ReactDOM.createRoot(div);
-    root.render(
-      <BrowserRouter>
-        <AuthProvider>
-          <Login />
-        </AuthProvider>
-      </BrowserRouter>
-    );
-    expect(div.innerHTML).toContain("Ingresar");
-    expect(div.innerHTML).toContain("Correo");
-    expect(div.innerHTML).toContain("Contraseña");
+// Mock COMPLETO
+jest.mock("react-router-dom", () => ({
+  useNavigate: () => jest.fn(),
+  Link: ({ children }) => <span>{children}</span>,
+}));
+
+jest.mock("../context/AuthContext", () => ({
+  useAuth: () => ({
+    login: jest.fn(),
+  }),
+}));
+
+import Login from "../pages/Login";
+
+describe("Login Page", () => {
+  
+  // Usar getByRole con heading para el título
+  it("debe mostrar el título Ingresar", () => {
+    render(<Login />);
+    expect(screen.getByRole("heading", { name: /ingresar/i })).toBeInTheDocument();
+  });
+
+  // Usar getByPlaceholderText o buscar por tipo de input
+  it("debe tener un campo de tipo email", () => {
+    render(<Login />);
+    const emailInput = document.querySelector('input[type="email"]');
+    expect(emailInput).toBeInTheDocument();
+  });
+
+  it("debe tener un campo de tipo password", () => {
+    render(<Login />);
+    const passwordInput = document.querySelector('input[type="password"]');
+    expect(passwordInput).toBeInTheDocument();
+  });
+
+  it("debe tener un botón de submit", () => {
+    render(<Login />);
+    expect(screen.getByRole("button", { name: /ingresar/i })).toBeInTheDocument();
+  });
+
+  it("debe mostrar el texto de registro", () => {
+    render(<Login />);
+    expect(screen.getByText(/no tienes cuenta/i)).toBeInTheDocument();
   });
 });
