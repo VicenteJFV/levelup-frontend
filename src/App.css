@@ -48,3 +48,65 @@
   flex: 1 0 auto;
   padding-top: 2rem;
 }
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden; /* ✅ Evitar scroll horizontal */
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+  padding: 2rem 0;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* Contenedor con márgenes laterales */
+.container,
+.container-fluid {
+  padding-left: 1 5rem; /* ✅ Corregido: era "1 5rem" */
+  padding-right: 1 5rem;
+  overflow-x: hidden; /* ✅ Evitar scroll horizontal */
+}
+
+/* Espaciado para el footer */
+footer {
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+/* Espaciado para cards y elementos */
+.card {
+  margin-bottom: 1.5rem;
+}
+
+/* Espaciado en el sidebar del admin */
+.admin-sidebar {
+  padding: 1.5rem;
+}
+
+/* Espaciado entre secciones */
+section {
+  margin-bottom: 2rem;
+}

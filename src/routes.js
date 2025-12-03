@@ -12,6 +12,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AdminProductos from "./pages/AdminProductos";
 import AdminPedidos from "./pages/AdminPedidos";
 import Carrito from "./pages/Carrito";
+import Nosotros from "./pages/Nosotros"; // ✅ Nueva página
 
 import { useAuth } from "./context/AuthContext";
 
@@ -23,7 +24,11 @@ function PrivateRoute({ children, roles }) {
   }
 
   if (roles && !roles.includes(user.role)) {
-    return <h2 className="text-center mt-5">No tienes permisos para ver esta sección.</h2>;
+    return (
+      <h2 className="text-center mt-5">
+        No tienes permisos para ver esta sección.{" "}
+      </h2>
+    );
   }
 
   return children;
@@ -41,7 +46,8 @@ const AppRoutes = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/carrito" element={<Carrito />} />
-
+          <Route path="/nosotros" element={<Nosotros />} />{" "}
+          {/* ✅ Nueva ruta */}
           {/* Rutas de administración protegidas */}
           <Route
             path="/admin"

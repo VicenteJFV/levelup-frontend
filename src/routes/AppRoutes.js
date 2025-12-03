@@ -7,6 +7,11 @@ import Registro from "../pages/Registro";
 import AdminDashboard from "../pages/AdminDashboard";
 import AdminProductos from "../pages/AdminProductos";
 import AdminPedidos from "../pages/AdminPedidos";
+import Nosotros from "../pages/Nosotros";
+import Blog from "../pages/Blog";
+import BlogSetupGamer from "../pages/BlogSetupGamer";
+import BlogJuegosMesa from "../pages/BlogJuegosMesa";
+import BlogAuriculares from "../pages/BlogAuriculares";
 import PrivateRoute from "../components/PrivateRoute";
 
 export const appRoutes = (
@@ -16,7 +21,18 @@ export const appRoutes = (
     <Route path="/carrito" element={<Carrito />} />
     <Route path="/login" element={<Login />} />
     <Route path="/registro" element={<Registro />} />
+    <Route path="/nosotros" element={<Nosotros />} />
 
+    {/* Blog */}
+    <Route path="/blog" element={<Blog />} />
+    <Route path="/blog/guia-setup-gamer" element={<BlogSetupGamer />} />
+    <Route path="/blog/top-juegos-mesa-familia" element={<BlogJuegosMesa />} />
+    <Route
+      path="/blog/mejores-auriculares-2025"
+      element={<BlogAuriculares />}
+    />
+
+    {/* Admin */}
     <Route
       path="/admin"
       element={
