@@ -46,6 +46,24 @@ const Navbar = () => {
               Productos
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to="/nosotros"
+              style={{ fontFamily: "Orbitron, sans-serif" }}
+            >
+              Nosotros
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to="/blog"
+              style={{ fontFamily: "Orbitron, sans-serif" }}
+            >
+              Blog
+            </NavLink>
+          </li>
         </ul>
 
         <ul className="navbar-nav ms-auto align-items-center">
