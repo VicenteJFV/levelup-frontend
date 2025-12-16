@@ -1,8 +1,9 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import { crearPedido } from "../services/orderService";
+import { crearPreferenciaMP } from "../services/paymentService";
 
 const Carrito = () => {
   const {
@@ -15,7 +16,6 @@ const Carrito = () => {
   } = useCart();
 
   const { user } = useAuth();
-  const navigate = useNavigate();
   const [loading, setLoading] = React.useState(false);
 
   // Si el carrito está vacío
@@ -36,28 +36,33 @@ const Carrito = () => {
     setLoading(true);
 
     try {
-      // Armamos el objeto pedido según el backend (Order)
+      // 1️⃣ Crear pedido en el backend
       const order = {
         customerName: user?.name || "Invitado",
         customerEmail: user?.email || "sin-correo@levelup.cl",
         total: totalPrice,
-        // El backend espera una lista de items con product anidado
         items: items.map((i) => ({
           quantity: i.qty,
           unitPrice: i.product.price,
           product: { id: i.product.id },
         })),
-        // status y createdAt los completa el backend
       };
 
-      await crearPedido(order);
+      const createdOrder = await crearPedido(order);
 
-      // Limpiar carrito y mandar al home
-      clearCart();
-      navigate("/");
+      // 2️⃣ Crear preferencia de Mercado Pago
+      const response = await crearPreferenciaMP({
+        title: "Compra Level-Up",
+        price: totalPrice,
+        quantity: 1,
+        orderId: createdOrder?.id || Date.now().toString(),
+      });
+
+      // 3️⃣ Redirigir a Mercado Pago
+      window.location.href = response.initPoint;
     } catch (err) {
       console.error(err);
-      alert("Ocurrió un error al procesar el pedido 😢");
+      alert("Ocurrió un error al iniciar el pago 😢");
     } finally {
       setLoading(false);
     }
@@ -108,7 +113,7 @@ const Carrito = () => {
                           </div>
                         </div>
                       </td>
-                      {/* Cantidad */}
+
                       <td className="text-center align-middle">
                         <div className="d-flex align-items-center justify-content-center gap-2">
                           <button
@@ -129,6 +134,7 @@ const Carrito = () => {
                           </button>
                         </div>
                       </td>
+
                       <td className="text-end align-middle">
                         {(item.product.price * item.qty).toLocaleString(
                           "es-CL",
@@ -138,6 +144,7 @@ const Carrito = () => {
                           }
                         )}
                       </td>
+
                       <td className="text-end align-middle">
                         <button
                           className="btn btn-outline-danger btn-sm"
@@ -192,7 +199,7 @@ const Carrito = () => {
                 onClick={handleCheckout}
                 disabled={loading}
               >
-                {loading ? "Procesando..." : "Proceder al pago"}
+                {loading ? "Redirigiendo..." : "Proceder al pago"}
               </button>
             </div>
           </div>
