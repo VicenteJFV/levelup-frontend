@@ -1,9 +1,11 @@
-const API_BASE_URL = "http://172.31.76.245:8080/api";
+const API_BASE_URL = process.env. REACT_APP_BACKEND_URL || "http://localhost:8080";
+
+console.log("🔧 API_BASE_URL cargada:", API_BASE_URL);  // Para debugging
 
 // ----- TOKEN -----
 
 export function getToken() {
-  return localStorage.getItem("token");
+  return localStorage. getItem("token");
 }
 
 export function setToken(token) {
@@ -20,7 +22,7 @@ export function setUser(user) {
 }
 
 export function getUser() {
-  const u = localStorage.getItem("user");
+  const u = localStorage. getItem("user");
   return u ? JSON.parse(u) : null;
 }
 
@@ -31,14 +33,18 @@ export async function apiFetch(url, options = {}) {
 
   const headers = {
     "Content-Type": "application/json",
-    ...(options.headers || {})
+    ...(options.headers || {}),
   };
 
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
   }
 
-  const response = await fetch(`${API_BASE_URL}${url}`, {
+  // Construir URL completa
+  const fullUrl = `${API_BASE_URL}${url}`;
+  console.log("📡 Fetching:", fullUrl);  // Para debugging
+
+  const response = await fetch(fullUrl, {
     ...options,
     headers,
   });
@@ -51,3 +57,6 @@ export async function apiFetch(url, options = {}) {
 
   return response;
 }
+
+// Exportar también la URL base por si se necesita
+export { API_BASE_URL };
