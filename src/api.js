@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://35.170.74.109:8080/api";
+const API_BASE_URL = "http://3.236.140.106:8080/api";
 
 // ----- TOKEN -----
 
