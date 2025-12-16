@@ -1,10 +1,11 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-// Mock de react-router-dom ANTES de importar el componente
+// Mock completo de react-router-dom ANTES de importar el componente
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useNavigate: () => jest.fn(),
+  Link: ({ children, to }) => <a href={to}>{children}</a>, // Mock de Link
 }));
 
 import Home from "../pages/Home";
