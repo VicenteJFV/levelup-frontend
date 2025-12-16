@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import { crearPedido } from "../services/orderService";
-import { crearPreferenciaMP } from "../services/paymentService";
+import { crearPreferenciaMercadoPago } from "../services/paymentService";
 
 const Carrito = () => {
   const {
@@ -51,7 +51,7 @@ const Carrito = () => {
       const createdOrder = await crearPedido(order);
 
       // 2️⃣ Crear preferencia de Mercado Pago
-      const response = await crearPreferenciaMP({
+      const response = await crearPreferenciaMercadoPago({
         title: "Compra Level-Up",
         price: totalPrice,
         quantity: 1,
